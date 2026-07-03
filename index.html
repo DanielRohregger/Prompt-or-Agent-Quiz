@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Plattform-Quiz – Prompt oder welcher Agent?</title>
+<title>M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <style>
@@ -71,6 +71,16 @@
   .done { flex: 1; text-align: center; font-weight: 700; font-size: 15px; color: #fff;
     background: linear-gradient(90deg, var(--purple), var(--blue)); border-radius: 6px; padding: 10px 14px; display: none; }
   .done.show { display: block; }
+
+  /* Kaffee-Banner */
+  .kofi { display: flex; align-items: center; gap: 8px; justify-content: center; flex-wrap: wrap;
+    background: #f6f2ff; border: 1px solid #e7ddff; color: var(--muted); border-radius: 999px;
+    padding: 6px 16px; font-size: 12.5px; margin-bottom: 12px; }
+  .kofi .cup { font-size: 15px; }
+  .kofi a { color: var(--purple); font-weight: 700; text-decoration: none; }
+  .kofi a:hover { text-decoration: underline; }
+
+  .qbtn.reveal-alt { outline: 2px dashed var(--blue); outline-offset: 2px; opacity: 1; }
 
   /* Spickzettel */
   .cheat-h { font-size: 22px; font-weight: 800; margin: 32px 0 4px; }
@@ -149,9 +159,15 @@
 <body>
 <div class="wrap">
 
+  <div class="kofi">
+    <span class="cup">☕</span>
+    <span>Dieses Quiz hat mich 40&nbsp;$ in Copilot Credits gekostet 🥲</span>
+    <a href="https://www.paypal.com/paypalme/rohreggerdaniel" target="_blank" rel="noopener">Spendier mir einen Kaffee</a>
+  </div>
+
   <header class="hero">
     <span class="logo-chip"><img src="images/logo.png" alt="Copilot Coaching"></span>
-    <h1>Plattform-Quiz: Prompt oder welcher Agent?</h1>
+    <h1>M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</h1>
     <p>Microsoft 365 Copilot · Cowork · Agent Builder · SharePoint Agent · Copilot Studio · Microsoft Foundry — 31 Fälle mit Spickzettel</p>
   </header>
 
@@ -411,13 +427,13 @@
 
   var Q = [
     { t:'Fasse diese eine wütende Kunden-Mail zusammen und entwirf eine höfliche Antwort.', a:'prompt', w:'Einmalig, der ganze Kontext steht schon im Chat – ein normaler Copilot-Prompt reicht.' },
-    { t:'400 Verträge liegen in EINER SharePoint-Bibliothek. Das Team soll sie befragen können – kein Web, keine IT, in 10 Minuten startklar.', a:'sharepoint', w:'Reines Dokumenten-Q&amp;A über eine einzige SharePoint-Quelle – genau der SharePoint-Agent-Fall.' },
+    { t:'400 Verträge liegen in EINER SharePoint-Bibliothek. Das Team soll sie befragen können – kein Web, keine IT, in 10 Minuten startklar.', a:'sharepoint', alt:['builder'], w:'Am schnellsten der SharePoint-Agent (direkt auf der Bibliothek, ohne Setup). Auch möglich: ein Agent Builder mit dieser Bibliothek als Wissensquelle – etwas mehr Aufwand, dafür eigene Anweisungen und Starter-Prompts.' },
     { t:'Geh eigenständig meinen Posteingang der letzten Woche durch, fasse die wichtigsten Punkte zusammen, erstelle drei Antwort-Entwürfe UND leg mir ein Word-Dokument mit dem Wochenüberblick ab – alles in einem Rutsch.', a:'cowork', w:'Mehrstufige Aufgabe über E-Mail + Dokumente, eigenständig in deinem Namen erledigt und fertig abgelegt – das ist Copilot Cowork (kein Bauen, mehr als ein einzelner Prompt).' },
     { t:'Bei JEDER neuen Schadensmeldung soll automatisch ein Datensatz in Dynamics angelegt und eine Bestätigungsmail verschickt werden – ohne dass jemand klickt.', a:'studio', w:'Auslöser + Aktion im Fremdsystem + Autonomie für einen definierten Prozess – das baut man in Copilot Studio.' },
     { t:'Ein Entwicklerteam trainiert ein eigenes, feingetuntes Modell auf 10 Mio. historischen Serviceprotokollen und orchestriert mehrere spezialisierte Agenten.', a:'foundry', w:'Eigenes Modell, Fine-Tuning, Multi-Agent – Pro-Code-Terrain, nur in Microsoft Foundry.' },
-    { t:'Erstelle eine belastbare Wettbewerbsanalyse der drei größten europäischen Mobilitätsclubs – aus Web-Quellen UND unseren internen Unterlagen, sauber zitiert.', a:'researcher', w:'Tiefe, mehrstufige Recherche über Web + Arbeitsinhalte mit Quellen – der Researcher-Agent (fertig in M365 Copilot, einfach auswählen).' },
+    { t:'Erstelle eine belastbare Wettbewerbsanalyse der drei größten europäischen Mobilitätsclubs – aus Web-Quellen UND unseren internen Unterlagen, sauber zitiert.', a:'researcher', alt:['cowork'], w:'Ideal der Researcher-Agent: tiefe, quellenzitierte Recherche über Web + Arbeitsinhalte. Auch möglich: Copilot Cowork, wenn daraus gleich ein fertiges Dokument end-to-end entstehen soll.' },
     { t:'Ein Service-Assistent, der Tarif-PDFs aus drei SharePoint-Ordnern UND einer öffentlichen Website kennt, mit 4 Startfragen, ohne Code.', a:'builder', w:'Mehrere M365-Quellen + Web + Starter-Prompts, deklarativ ohne Code – klassischer Agent Builder.' },
-    { t:'Analysiere diese Excel-Datei mit den Servicezahlen: Top-Ursachen, Vorjahresvergleich, Ausreißer – und liefere ein Balkendiagramm.', a:'analyst', w:'Echte Berechnungen auf strukturierten Daten mit Diagramm – der Analyst-Agent rechnet dafür mit Python im Hintergrund.' },
+    { t:'Analysiere diese Excel-Datei mit den Servicezahlen: Top-Ursachen, Vorjahresvergleich, Ausreißer – und liefere ein Balkendiagramm.', a:'analyst', alt:['prompt'], w:'Ideal der Analyst-Agent (rechnet mit Python im Hintergrund, auch bei komplexeren Auswertungen). Auch möglich: M365 Copilot direkt in Excel bzw. mit „Think Deeper" für einfachere Analysen.' },
     { t:'Bereite meinen Kundentermin komplett vor: Kalender prüfen, relevante Dateien und Mails zusammentragen, ein Briefing als PDF erstellen und mir das fertige Ergebnis hinlegen.', a:'cowork', w:'Langlaufende Aufgabe über mehrere Tools mit fertigem Deliverable – Copilot Cowork erledigt das end-to-end.' },
     { t:'Übersetze dieses eine Angebots-PDF einmalig ins Englische für einen Geschäftspartner.', a:'prompt', w:'Einmalige Aufgabe, der Inhalt liegt vor – ein Prompt genügt.' },
     { t:'Nur die Handbücher der SharePoint-Bibliothek „Serviceprozesse" sollen befragbar sein – nichts Externes, keine Automatisierung, gebaut vom Content-Owner.', a:'sharepoint', w:'Eine SharePoint-Quelle, reines Q&amp;A, kein IT-Projekt – SharePoint Agent.' },
@@ -433,11 +449,11 @@
     { t:'Richte mir – ohne etwas zu bauen – eine tägliche Routine ein, die morgens meine Termine, neuen Mails und Teams-Nachrichten sichtet und mir ein kurzes Briefing erstellt.', a:'cowork', w:'Geplanter, wiederkehrender Auftrag auf deinen eigenen M365-Daten, ohne Bauen – Copilot Cowork (kein Copilot-Studio-Projekt nötig).' },
     { t:'Ein maßgeschneidertes RAG-System mit Azure AI Search, eigenem Vektorindex und mehreren spezialisierten Agenten, eingebettet in unsere Azure-Landschaft.', a:'foundry', w:'Eigene RAG-Architektur in Azure – Pro-Code, Microsoft Foundry.' },
     { t:'Ein „E-Mobilität-Experte" mit fester Tonalität, gegroundet auf interne Doku + Web-Suche, den mehrere Kollegen konsistent nutzen – keine Anbindung an Fremdsysteme.', a:'builder', w:'Konsistente Team-Nutzung, M365 + Web, keine Aktionen – Agent Builder.' },
-    { t:'Kombiniere Marktdaten aus dem Web mit unseren OneDrive-Dokumenten zu einer umfassenden Markteintritts-Analyse mit belegten Quellen.', a:'researcher', w:'Web + interne Quellen, tiefe Analyse mit Zitaten – klassischer Researcher-Fall (fertig in M365 Copilot).' },
+    { t:'Kombiniere Marktdaten aus dem Web mit unseren OneDrive-Dokumenten zu einer umfassenden Markteintritts-Analyse mit belegten Quellen.', a:'researcher', alt:['cowork'], w:'Ideal der Researcher-Agent (Web + interne Quellen, tiefe Analyse mit Zitaten). Auch möglich: Copilot Cowork, wenn die Analyse gleich als fertiges Deliverable abgelegt werden soll.' },
     { t:'Rechne mir aus diesen Monatswerten Saisonalität, Ausreißer über 2 Standardabweichungen und eine Regressionsprognose aus.', a:'analyst', w:'Statistik und Prognose auf einem Datensatz – der Analyst-Agent führt dafür Python aus.' },
     { t:'Formuliere aus diesen drei Stichpunkten einen freundlichen Antworttext an einen Kunden.', a:'prompt', w:'Kleine, einmalige Schreibaufgabe – ein Prompt reicht.' },
     { t:'Erstelle mir eigenständig aus meinen Notizen und den Projektdateien eine fertige PowerPoint UND eine Excel-Übersicht und speichere beides ab – ich will das fertige Ergebnis.', a:'cowork', w:'Mehrere Deliverables über mehrere Apps hinweg, eigenständig erstellt und gespeichert – Copilot Cowork statt einzelnem Prompt.' },
-    { t:'Die Reisebüro-Kollegen sollen die 60 Länder-Infoblätter aus EINER SharePoint-Bibliothek befragen – nur diese Dateien, kein Web, ohne IT.', a:'sharepoint', w:'Eine SharePoint-Bibliothek, reines Q&amp;A – SharePoint Agent.' },
+    { t:'Die Reisebüro-Kollegen sollen die 60 Länder-Infoblätter aus EINER SharePoint-Bibliothek befragen – nur diese Dateien, kein Web, ohne IT.', a:'sharepoint', alt:['builder'], w:'Ideal der SharePoint-Agent (direkt auf der Bibliothek). Auch möglich: ein Agent Builder mit dieser Bibliothek als Quelle, wenn feste Startfragen/Tonalität gewünscht sind.' },
     { t:'Ein Agent bindet über einen Power-Platform-Connector an SAP an und startet einen mehrstufigen Genehmigungs-Workflow – Low-Code von der Fachabteilung.', a:'studio', w:'Connector + Workflow/Aktion, Low-Code – Copilot Studio.' },
     { t:'Ein hochskalierendes Kundenprodukt mit Millionen Anfragen pro Tag braucht freie Modellwahl, eigenes Monitoring und Latenz-Tuning.', a:'foundry', w:'Skalierung, Modellkontrolle, Betrieb – Microsoft Foundry.' },
     { t:'Ich will schnell einen persönlichen Assistenten, der meine OneDrive-Reports und eine Handvoll Websites kennt, mit eigener Anweisung – ohne IT.', a:'builder', w:'Mehrere Quellen + Web + eigene Anweisung, No-Code – Agent Builder (ein SharePoint Agent kann nur 1 Site und kein Web).' }
@@ -516,7 +532,9 @@
 
   function render(i) {
     cur = i;
-    var s = state[i], item = Q[i], group = GROUP[item.a];
+    var s = state[i], item = Q[i];
+    var accept = [item.a].concat(item.alt || []);
+    var acceptG = {}; accept.forEach(function (c) { acceptG[GROUP[c]] = true; });
     caseNo.textContent = 'Fall ' + (i + 1) + ' / ' + Q.length;
     progFill.style.width = ((i + 1) / Q.length * 100) + '%';
     qText.textContent = item.t;
@@ -524,21 +542,24 @@
 
     var l1 = document.createElement('div');
     l1.className = 'steplabel';
-    l1.textContent = 'Schritt 1 — fertig in Microsoft 365 Copilot nutzen oder selbst bauen?';
+    l1.textContent = 'Schritt 1 — Microsoft 365 Copilot oder eigener Agent?';
     stageArea.appendChild(l1);
     var opts1 = document.createElement('div');
     opts1.className = 'opts';
     stageArea.appendChild(opts1);
-    var promptBtn = makeBtn('Fertig in M365 Copilot', 'prompt');
-    var agentBtn = makeBtn('Selbst gebauter Agent', 'builder');
+    var promptBtn = makeBtn('M365 Copilot', 'prompt');
+    var agentBtn = makeBtn('Eigener Agent', 'builder');
     opts1.appendChild(promptBtn);
     opts1.appendChild(agentBtn);
 
-    var showStage2 = (s.stage1 !== null && s.stage1 === group);
+    var showStage2 = (s.stage1 !== null && acceptG[s.stage1]);
 
-    if (s.stage1 === 'prompt') promptBtn.classList.add(group === 'prompt' ? 'sel-correct' : 'sel-wrong');
-    else if (s.stage1 === 'agent') agentBtn.classList.add(group === 'agent' ? 'sel-correct' : 'sel-wrong');
-    if (s.finished && s.stage1 !== group) (group === 'prompt' ? promptBtn : agentBtn).classList.add('reveal');
+    if (s.stage1 === 'prompt') promptBtn.classList.add(acceptG['prompt'] ? 'sel-correct' : 'sel-wrong');
+    else if (s.stage1 === 'agent') agentBtn.classList.add(acceptG['agent'] ? 'sel-correct' : 'sel-wrong');
+    if (s.finished && !acceptG[s.stage1]) {
+      if (acceptG['prompt']) promptBtn.classList.add('reveal');
+      if (acceptG['agent']) agentBtn.classList.add('reveal');
+    }
 
     var opts2 = null;
     if (showStage2) {
@@ -553,18 +574,24 @@
       order.forEach(function (cat) {
         var b = makeBtn(CATS[cat].label, cat);
         b.dataset.cat = cat;
-        if (s.finished && s.choice) {
-          if (cat === s.choice) b.classList.add(cat === item.a ? 'sel-correct' : 'sel-wrong');
-          if (cat === item.a && s.choice !== item.a) b.classList.add('reveal');
+        if (s.finished) {
+          var ok = accept.indexOf(cat) >= 0;
+          if (cat === s.choice) b.classList.add(ok ? 'sel-correct' : 'sel-wrong');
+          else if (cat === item.a) b.classList.add('reveal');
+          else if (ok) b.classList.add('reveal-alt');
         }
         opts2.appendChild(b);
       });
     }
 
     if (s.finished) {
+      var ideal = (s.choice === item.a);
+      var verdict = s.correct ? (ideal ? '✓ Ideallösung' : '✓ Auch möglich') : '✗ Falsch';
+      var line = 'Ideallösung: ' + tag(item.a);
+      if (item.alt && item.alt.length) line += ' &nbsp;·&nbsp; Auch möglich: ' + item.alt.map(tag).join(' ');
       var fb = document.createElement('div');
       fb.className = 'feedback ' + (s.correct ? 'ok' : 'no');
-      fb.innerHTML = '<span class="verdict">' + (s.correct ? '✓ Richtig' : '✗ Falsch') + '</span>Beste Wahl: ' + tag(item.a) + '<br>' + item.w;
+      fb.innerHTML = '<span class="verdict">' + verdict + '</span>' + line + '<br>' + item.w;
       stageArea.appendChild(fb);
       Array.prototype.forEach.call(stageArea.querySelectorAll('.qbtn'), function (b) { b.disabled = true; });
     } else if (showStage2) {
@@ -572,7 +599,7 @@
       Array.prototype.forEach.call(opts2.querySelectorAll('.qbtn'), function (b) {
         b.addEventListener('click', function () {
           if (s.finished) return;
-          s.choice = b.dataset.cat; s.finished = true; s.correct = (b.dataset.cat === item.a);
+          s.choice = b.dataset.cat; s.finished = true; s.correct = (accept.indexOf(b.dataset.cat) >= 0);
           render(i); updateScore();
         });
       });
@@ -580,13 +607,13 @@
       promptBtn.addEventListener('click', function () {
         if (s.finished) return;
         s.stage1 = 'prompt';
-        if (group !== 'prompt') { s.finished = true; s.correct = false; }
+        if (!acceptG['prompt']) { s.finished = true; s.correct = false; }
         render(i); updateScore();
       });
       agentBtn.addEventListener('click', function () {
         if (s.finished) return;
         s.stage1 = 'agent';
-        if (group !== 'agent') { s.finished = true; s.correct = false; }
+        if (!acceptG['agent']) { s.finished = true; s.correct = false; }
         render(i); updateScore();
       });
     }
