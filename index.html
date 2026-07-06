@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</title>
+<title data-i18n="title">M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <style>
@@ -154,33 +154,50 @@
     .qtext { font-size: 21px; } .qbtn { font-size: 15px; padding: 9px 14px; }
     .hero h1 { font-size: 22px; } .cheat .cbody { padding-left: 16px; }
   }
+
+  /* Language switch */
+  .langbar { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+  .langswitch { display: inline-flex; background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .langswitch button { border: none; background: transparent; color: var(--muted); font-family: inherit;
+    font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 999px; cursor: pointer;
+    transition: all .2s ease; }
+  .langswitch button:hover { color: var(--ink); }
+  .langswitch button.active { background: var(--purple); color: #fff; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+  <div class="langbar">
+    <div class="langswitch" id="langSwitch">
+      <button type="button" data-lang="de">DE</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+
   <div class="kofi">
     <span class="cup">☕</span>
-    <span>Dieses Quiz hat mich 40&nbsp;$ in Copilot Credits gekostet 🥲</span>
-    <a href="https://www.paypal.com/paypalme/rohreggerdaniel" target="_blank" rel="noopener">Spendier mir einen Kaffee</a>
+    <span data-i18n="kofiText">Dieses Quiz hat mich 40&nbsp;$ in Copilot Credits gekostet 🥲</span>
+    <a href="https://www.paypal.com/paypalme/rohreggerdaniel" target="_blank" rel="noopener" data-i18n="kofiLink">Spendier mir einen Kaffee</a>
   </div>
 
   <header class="hero">
     <span class="logo-chip"><img src="images/logo.png" alt="Copilot Coaching"></span>
-    <h1>M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</h1>
-    <p>Microsoft 365 Copilot · Cowork · Agent Builder · SharePoint Agent · Copilot Studio · Microsoft Foundry — 31 Fälle mit Spickzettel</p>
+    <h1 data-i18n="heroTitle">M365 Copilot Quiz: Wann nutze ich was? Copilot vs Agents</h1>
+    <p data-i18n="heroSub">Microsoft 365 Copilot · Cowork · Agent Builder · SharePoint Agent · Copilot Studio · Microsoft Foundry — 31 Fälle mit Spickzettel</p>
   </header>
 
   <div class="bar">
     <div class="prog"><div class="prog-fill" id="progFill"></div></div>
     <div class="bar-row">
       <span class="caseno" id="caseNo">Fall 1 / 31</span>
-      <span class="score">Punkte <b class="hl" id="scoreNum">0</b> / <span id="qTotal">31</span> &nbsp;·&nbsp; beantwortet <b id="answeredNum">0</b></span>
-      <button class="btn-reset" id="reset" type="button">Neu starten</button>
+      <span class="score"><span data-i18n="scoreLabel">Punkte</span> <b class="hl" id="scoreNum">0</b> / <span id="qTotal">31</span> &nbsp;·&nbsp; <span data-i18n="answeredLabel">beantwortet</span> <b id="answeredNum">0</b></span>
+      <button class="btn-reset" id="reset" type="button" data-i18n="resetBtn">Neu starten</button>
     </div>
   </div>
 
-  <p style="font-size:13px;color:var(--muted);margin:0 0 12px;">Entscheide zuerst: In <b>Microsoft 365 Copilot fertig nutzen</b> (Prompt, Researcher, Analyst oder Copilot Cowork) – oder einen <b>Agenten selbst bauen</b> (Agent Builder, SharePoint Agent, Copilot Studio, Microsoft Foundry)? Die Beispiele sind bewusst extrem, damit die Grenzen jeder Plattform klar werden. Der Spickzettel ganz unten erklärt jede Option mit offizieller Quelle.</p>
+  <p data-i18n-html="intro" style="font-size:13px;color:var(--muted);margin:0 0 12px;">Entscheide zuerst: In <b>Microsoft 365 Copilot fertig nutzen</b> (Prompt, Researcher, Analyst oder Copilot Cowork) – oder einen <b>Agenten selbst bauen</b> (Agent Builder, SharePoint Agent, Copilot Studio, Microsoft Foundry)? Die Beispiele sind bewusst extrem, damit die Grenzen jeder Plattform klar werden. Der Spickzettel ganz unten erklärt jede Option mit offizieller Quelle.</p>
 
   <main class="card">
     <div class="qtext" id="qText"></div>
@@ -188,21 +205,21 @@
   </main>
 
   <div class="nav">
-    <button class="nav-btn" id="prevBtn" type="button">◀ Zurück</button>
+    <button class="nav-btn" id="prevBtn" type="button" data-i18n="prevBtn">◀ Zurück</button>
     <div class="done" id="doneBanner"></div>
-    <button class="nav-btn primary" id="nextBtn" type="button">Weiter ▶</button>
+    <button class="nav-btn primary" id="nextBtn" type="button" data-i18n="nextBtn">Weiter ▶</button>
   </div>
 
-  <p style="font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px;">Mit den Pfeiltasten ← → blättern.</p>
+  <p data-i18n="arrowHint" style="font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px;">Mit den Pfeiltasten ← → blättern.</p>
 
   <!-- SPICKZETTEL -->
-  <h2 class="cheat-h">Spickzettel – die Optionen im Detail</h2>
-  <p class="cheat-sub">Funktionen, Grenzen und wann du was nimmst – je Punkt aufklappen. Jeweils mit offizieller Microsoft-Quelle.</p>
+  <h2 class="cheat-h" data-i18n="cheatH">Spickzettel – die Optionen im Detail</h2>
+  <p class="cheat-sub" data-i18n="cheatSub">Funktionen, Grenzen und wann du was nimmst – je Punkt aufklappen. Jeweils mit offizieller Microsoft-Quelle.</p>
   <div class="cheat">
 
     <details class="cl-prompt">
-      <summary><img class="cicon" src="images/prompt.png" alt="">Einfacher Prompt · Microsoft 365 Copilot Chat<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/prompt.png" alt=""><span data-i18n="chPromptT">Einfacher Prompt · Microsoft 365 Copilot Chat</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chPromptB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Sofort-Antworten in Word, Excel, Outlook, Teams und im Copilot-Chat</li>
@@ -221,8 +238,8 @@
     </details>
 
     <details class="cl-researcher">
-      <summary><img class="cicon" src="images/researcher.png" alt="">Researcher-Agent (fertig in M365 Copilot)<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/researcher.png" alt=""><span data-i18n="chResearcherT">Researcher-Agent (fertig in M365 Copilot)</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chResearcherB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Intelligenter Assistent für komplexe, mehrstufige Recherche – einfach unter „Agents" auswählen</li>
@@ -241,8 +258,8 @@
     </details>
 
     <details class="cl-analyst">
-      <summary><img class="cicon" src="images/analyst.png" alt="">Analyst-Agent (fertig in M365 Copilot)<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/analyst.png" alt=""><span data-i18n="chAnalystT">Analyst-Agent (fertig in M365 Copilot)</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chAnalystB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Virtueller Datenanalyst für strukturierte Daten (Excel, CSV, TSV)</li>
@@ -261,8 +278,8 @@
     </details>
 
     <details class="cl-cowork">
-      <summary><img class="cicon" src="images/cowork.png" alt="">Copilot Cowork · der agentische KI-Kollege<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/cowork.png" alt=""><span data-i18n="chCoworkT">Copilot Cowork · der agentische KI-Kollege</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chCoworkB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Agentischer „KI-Kollege" in Microsoft 365 Copilot (allgemein verfügbar) – erledigt Aufgaben in deinem Namen</li>
@@ -281,8 +298,8 @@
     </details>
 
     <details class="cl-builder">
-      <summary><img class="cicon" src="images/agent-builder.png" alt="">Agent Builder · No-Code in M365 Copilot<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/agent-builder.png" alt=""><span data-i18n="chBuilderT">Agent Builder · No-Code in M365 Copilot</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chBuilderB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Deklarative Agents ohne Code direkt in M365 Copilot (Teams, microsoft365.com/chat)</li>
@@ -301,8 +318,8 @@
     </details>
 
     <details class="cl-sp">
-      <summary><img class="cicon" src="images/sharepoint.png" alt="">SharePoint Agent · Q&amp;A auf einer Site<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/sharepoint.png" alt=""><span data-i18n="chSpT">SharePoint Agent · Q&amp;A auf einer Site</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chSpB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Beantwortet Fragen zu den Inhalten EINER SharePoint-Site oder -Bibliothek</li>
@@ -321,8 +338,8 @@
     </details>
 
     <details class="cl-studio">
-      <summary><img class="cicon" src="images/copilot-studio.png" alt="">Copilot Studio · Low-Code, Aktionen &amp; Autonomie<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/copilot-studio.png" alt=""><span data-i18n="chStudioT">Copilot Studio · Low-Code, Aktionen &amp; Autonomie</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chStudioB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Grafisches Low-Code-Tool für Agents und Agent-Flows (copilotstudio.microsoft.com)</li>
@@ -342,8 +359,8 @@
     </details>
 
     <details class="cl-foundry">
-      <summary><img class="cicon" src="images/foundry.png" alt="">Microsoft Foundry · Pro-Code für Entwickler<span class="plus"></span></summary>
-      <div class="cbody">
+      <summary><img class="cicon" src="images/foundry.png" alt=""><span data-i18n="chFoundryT">Microsoft Foundry · Pro-Code für Entwickler</span><span class="plus"></span></summary>
+      <div class="cbody" data-i18n-html="chFoundryB">
         <p>✅ Funktionen</p>
         <ul>
           <li>Verwaltete Entwickler-Plattform zum Bauen, Bereitstellen und Skalieren von Agents</li>
@@ -370,12 +387,12 @@
       <span class="bf-logo"><img src="images/logo.png" alt="Copilot Coaching"></span>
       <div>
         <div class="bf-title">Copilot Coaching</div>
-        <div class="bf-sub">Microsoft 365 Copilot Trainings &amp; Coaching · Daniel Rohregger</div>
+        <div class="bf-sub" data-i18n="bfSub">Microsoft 365 Copilot Trainings &amp; Coaching · Daniel Rohregger</div>
         <div class="bf-links"><a href="https://www.copilot-coaching.de" target="_blank" rel="noopener">copilot-coaching.de</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/drohregger/" target="_blank" rel="noopener">LinkedIn</a></div>
       </div>
     </div>
     <div class="bf-products">
-      <span class="bf-plabel">Behandelte Produkte</span>
+      <span class="bf-plabel" data-i18n="bfProducts">Behandelte Produkte</span>
       <img src="images/prompt.png" alt="Microsoft 365 Copilot" title="Microsoft 365 Copilot">
       <img src="images/researcher.png" alt="Researcher" title="Researcher-Agent">
       <img src="images/analyst.png" alt="Analyst" title="Analyst-Agent">
@@ -385,7 +402,7 @@
       <img src="images/copilot-studio.png" alt="Copilot Studio" title="Copilot Studio">
       <img src="images/foundry.png" alt="Microsoft Foundry" title="Microsoft Foundry">
     </div>
-    <div class="bf-legal">© 2026 Copilot Coaching · Daniel Rohregger. Erstellt im Copilot-Coaching-Markenstil. Alle Produktnamen und -logos sind Eigentum der Microsoft Corporation.</div>
+    <div class="bf-legal" data-i18n="bfLegal">© 2026 Copilot Coaching · Daniel Rohregger. Erstellt im Copilot-Coaching-Markenstil. Alle Produktnamen und -logos sind Eigentum der Microsoft Corporation.</div>
   </footer>
 </div>
 
@@ -393,12 +410,12 @@
 <div class="overlay" id="overlay">
   <div class="finish-card">
     <div class="finish-emoji">🎉</div>
-    <div class="finish-title">Geschafft!</div>
+    <div class="finish-title" data-i18n="finishTitle">Geschafft!</div>
     <div class="finish-score" id="ovScore">0<small> / 31</small></div>
     <div class="finish-msg" id="ovMsg"></div>
     <div class="finish-actions">
-      <button class="nav-btn primary" id="ovReplay" type="button">Nochmal spielen</button>
-      <button class="nav-btn" id="ovClose" type="button">Schließen</button>
+      <button class="nav-btn primary" id="ovReplay" type="button" data-i18n="ovReplay">Nochmal spielen</button>
+      <button class="nav-btn" id="ovClose" type="button" data-i18n="ovClose">Schließen</button>
     </div>
   </div>
 </div>
@@ -411,14 +428,14 @@
     studio: 'images/copilot-studio.png', foundry: 'images/foundry.png'
   };
   var CATS = {
-    prompt:     { label: 'Einfacher Prompt' },
-    researcher: { label: 'Researcher' },
-    analyst:    { label: 'Analyst' },
-    cowork:     { label: 'Copilot Cowork' },
-    builder:    { label: 'Agent Builder' },
-    sharepoint: { label: 'SharePoint Agent' },
-    studio:     { label: 'Copilot Studio' },
-    foundry:    { label: 'Microsoft Foundry' }
+    prompt:     { label: { de: 'Einfacher Prompt', en: 'Simple prompt' } },
+    researcher: { label: { de: 'Researcher', en: 'Researcher' } },
+    analyst:    { label: { de: 'Analyst', en: 'Analyst' } },
+    cowork:     { label: { de: 'Copilot Cowork', en: 'Copilot Cowork' } },
+    builder:    { label: { de: 'Agent Builder', en: 'Agent Builder' } },
+    sharepoint: { label: { de: 'SharePoint Agent', en: 'SharePoint Agent' } },
+    studio:     { label: { de: 'Copilot Studio', en: 'Copilot Studio' } },
+    foundry:    { label: { de: 'Microsoft Foundry', en: 'Microsoft Foundry' } }
   };
   var GROUP = { prompt:'prompt', researcher:'prompt', analyst:'prompt', cowork:'prompt',
                 builder:'agent', sharepoint:'agent', studio:'agent', foundry:'agent' };
@@ -426,37 +443,37 @@
   var AGENT_ORDER  = ['builder', 'sharepoint', 'studio', 'foundry'];
 
   var Q = [
-    { t:'Fasse diese eine wütende Kunden-Mail zusammen und entwirf eine höfliche Antwort.', a:'prompt', w:'Einmalig, der ganze Kontext steht schon im Chat – ein normaler Copilot-Prompt reicht.' },
-    { t:'400 Verträge liegen in EINER SharePoint-Bibliothek. Das Team soll sie befragen können – kein Web, keine IT, in 10 Minuten startklar.', a:'sharepoint', alt:['builder'], w:'Am schnellsten der SharePoint-Agent (direkt auf der Bibliothek, ohne Setup). Auch möglich: ein Agent Builder mit dieser Bibliothek als Wissensquelle – etwas mehr Aufwand, dafür eigene Anweisungen und Starter-Prompts.' },
-    { t:'Geh eigenständig meinen Posteingang der letzten Woche durch, fasse die wichtigsten Punkte zusammen, erstelle drei Antwort-Entwürfe UND leg mir ein Word-Dokument mit dem Wochenüberblick ab – alles in einem Rutsch.', a:'cowork', w:'Mehrstufige Aufgabe über E-Mail + Dokumente, eigenständig in deinem Namen erledigt und fertig abgelegt – das ist Copilot Cowork (kein Bauen, mehr als ein einzelner Prompt).' },
-    { t:'Bei JEDER neuen Schadensmeldung soll automatisch ein Datensatz in Dynamics angelegt und eine Bestätigungsmail verschickt werden – ohne dass jemand klickt.', a:'studio', w:'Auslöser + Aktion im Fremdsystem + Autonomie für einen definierten Prozess – das baut man in Copilot Studio.' },
-    { t:'Ein Entwicklerteam trainiert ein eigenes, feingetuntes Modell auf 10 Mio. historischen Serviceprotokollen und orchestriert mehrere spezialisierte Agenten.', a:'foundry', w:'Eigenes Modell, Fine-Tuning, Multi-Agent – Pro-Code-Terrain, nur in Microsoft Foundry.' },
-    { t:'Erstelle eine belastbare Wettbewerbsanalyse der drei größten europäischen Mobilitätsclubs – aus Web-Quellen UND unseren internen Unterlagen, sauber zitiert.', a:'researcher', alt:['cowork'], w:'Ideal der Researcher-Agent: tiefe, quellenzitierte Recherche über Web + Arbeitsinhalte. Auch möglich: Copilot Cowork, wenn daraus gleich ein fertiges Dokument end-to-end entstehen soll.' },
-    { t:'Ein Service-Assistent, der Tarif-PDFs aus drei SharePoint-Ordnern UND einer öffentlichen Website kennt, mit 4 Startfragen, ohne Code.', a:'builder', w:'Mehrere M365-Quellen + Web + Starter-Prompts, deklarativ ohne Code – klassischer Agent Builder.' },
-    { t:'Analysiere diese Excel-Datei mit den Servicezahlen: Top-Ursachen, Vorjahresvergleich, Ausreißer – und liefere ein Balkendiagramm.', a:'analyst', alt:['prompt'], w:'Ideal der Analyst-Agent (rechnet mit Python im Hintergrund, auch bei komplexeren Auswertungen). Auch möglich: M365 Copilot direkt in Excel bzw. mit „Think Deeper" für einfachere Analysen.' },
-    { t:'Bereite meinen Kundentermin komplett vor: Kalender prüfen, relevante Dateien und Mails zusammentragen, ein Briefing als PDF erstellen und mir das fertige Ergebnis hinlegen.', a:'cowork', w:'Langlaufende Aufgabe über mehrere Tools mit fertigem Deliverable – Copilot Cowork erledigt das end-to-end.' },
-    { t:'Übersetze dieses eine Angebots-PDF einmalig ins Englische für einen Geschäftspartner.', a:'prompt', w:'Einmalige Aufgabe, der Inhalt liegt vor – ein Prompt genügt.' },
-    { t:'Nur die Handbücher der SharePoint-Bibliothek „Serviceprozesse" sollen befragbar sein – nichts Externes, keine Automatisierung, gebaut vom Content-Owner.', a:'sharepoint', w:'Eine SharePoint-Quelle, reines Q&amp;A, kein IT-Projekt – SharePoint Agent.' },
-    { t:'Ein Bot auf unserer öffentlichen Website UND in WhatsApp, der Live-Daten aus dem CRM zieht und Termine bucht.', a:'studio', w:'Multi-Channel + Live-Connector + Buchungs-Aktion – Copilot Studio.' },
-    { t:'Ein produktreifes KI-System mit eigenem Guardrail-Layer, A/B-Tests der Prompts, Tracing und Kostenkontrolle in der CI/CD-Pipeline, betrieben vom Data-Science-Team.', a:'foundry', w:'Volle Entwicklerkontrolle, Evaluierung, Skalierung – Microsoft Foundry.' },
-    { t:'Recherchiere die regulatorischen Änderungen zur E-Mobilität der letzten 6 Monate und liefere einen strukturierten Bericht mit verlinkten Quellen.', a:'researcher', w:'Mehrstufige Recherche mit Quellen und fertigem Bericht – der Researcher-Agent (Standard-Chat wäre zu oberflächlich).' },
-    { t:'Vergleiche eigenständig knapp 4.000 Dateien zwischen zwei Projektständen und liefere am Ende eine fertige Ergebnisliste – keinen Entwurf.', a:'cowork', w:'Genau der Cowork-Fall: komplexe, lang laufende Aufgabe eigenständig bis zum fertigen Ergebnis (Microsofts eigenes Beispiel).' },
-    { t:'Onboarding-Buddy für neue Mitarbeitende: greift auf das HR-Wiki (SharePoint) und die Firmen-Website zu, feste Startfragen, No-Code, vom Team selbst gebaut.', a:'builder', w:'M365 + Web, deklarativ, konsistente Team-Nutzung – Agent Builder.' },
-    { t:'Berechne aus dieser CSV die Schadensquote je Tarif und Altersgruppe und erstelle eine Heatmap.', a:'analyst', w:'Quantitative Analyse strukturierter Daten + Visualisierung – Analyst-Agent (führt dafür Python aus).' },
-    { t:'Erkläre mir hier im Chat kurz den Unterschied zwischen AFIR und AFID.', a:'prompt', w:'Kurze Wissensfrage, kein eigenes Firmenwissen nötig – normaler Copilot-Chat.' },
-    { t:'Die Rechtsabteilung will ausschließlich über die Dateien EINER Projekt-Site Fragen beantworten lassen – schnell, ohne IT, ohne Web.', a:'sharepoint', w:'Single-Site-Q&amp;A durch den Content-Owner – SharePoint Agent.' },
-    { t:'Ein autonomer Agent überwacht nachts den Sammel-Posteingang, kategorisiert Anfragen und erstellt Tickets in ServiceNow.', a:'studio', w:'Gebauter autonomer Prozess-Agent mit Auslöser + Fremdsystem-Aktion (ServiceNow) – Copilot Studio.' },
-    { t:'Richte mir – ohne etwas zu bauen – eine tägliche Routine ein, die morgens meine Termine, neuen Mails und Teams-Nachrichten sichtet und mir ein kurzes Briefing erstellt.', a:'cowork', w:'Geplanter, wiederkehrender Auftrag auf deinen eigenen M365-Daten, ohne Bauen – Copilot Cowork (kein Copilot-Studio-Projekt nötig).' },
-    { t:'Ein maßgeschneidertes RAG-System mit Azure AI Search, eigenem Vektorindex und mehreren spezialisierten Agenten, eingebettet in unsere Azure-Landschaft.', a:'foundry', w:'Eigene RAG-Architektur in Azure – Pro-Code, Microsoft Foundry.' },
-    { t:'Ein „E-Mobilität-Experte" mit fester Tonalität, gegroundet auf interne Doku + Web-Suche, den mehrere Kollegen konsistent nutzen – keine Anbindung an Fremdsysteme.', a:'builder', w:'Konsistente Team-Nutzung, M365 + Web, keine Aktionen – Agent Builder.' },
-    { t:'Kombiniere Marktdaten aus dem Web mit unseren OneDrive-Dokumenten zu einer umfassenden Markteintritts-Analyse mit belegten Quellen.', a:'researcher', alt:['cowork'], w:'Ideal der Researcher-Agent (Web + interne Quellen, tiefe Analyse mit Zitaten). Auch möglich: Copilot Cowork, wenn die Analyse gleich als fertiges Deliverable abgelegt werden soll.' },
-    { t:'Rechne mir aus diesen Monatswerten Saisonalität, Ausreißer über 2 Standardabweichungen und eine Regressionsprognose aus.', a:'analyst', w:'Statistik und Prognose auf einem Datensatz – der Analyst-Agent führt dafür Python aus.' },
-    { t:'Formuliere aus diesen drei Stichpunkten einen freundlichen Antworttext an einen Kunden.', a:'prompt', w:'Kleine, einmalige Schreibaufgabe – ein Prompt reicht.' },
-    { t:'Erstelle mir eigenständig aus meinen Notizen und den Projektdateien eine fertige PowerPoint UND eine Excel-Übersicht und speichere beides ab – ich will das fertige Ergebnis.', a:'cowork', w:'Mehrere Deliverables über mehrere Apps hinweg, eigenständig erstellt und gespeichert – Copilot Cowork statt einzelnem Prompt.' },
-    { t:'Die Reisebüro-Kollegen sollen die 60 Länder-Infoblätter aus EINER SharePoint-Bibliothek befragen – nur diese Dateien, kein Web, ohne IT.', a:'sharepoint', alt:['builder'], w:'Ideal der SharePoint-Agent (direkt auf der Bibliothek). Auch möglich: ein Agent Builder mit dieser Bibliothek als Quelle, wenn feste Startfragen/Tonalität gewünscht sind.' },
-    { t:'Ein Agent bindet über einen Power-Platform-Connector an SAP an und startet einen mehrstufigen Genehmigungs-Workflow – Low-Code von der Fachabteilung.', a:'studio', w:'Connector + Workflow/Aktion, Low-Code – Copilot Studio.' },
-    { t:'Ein hochskalierendes Kundenprodukt mit Millionen Anfragen pro Tag braucht freie Modellwahl, eigenes Monitoring und Latenz-Tuning.', a:'foundry', w:'Skalierung, Modellkontrolle, Betrieb – Microsoft Foundry.' },
-    { t:'Ich will schnell einen persönlichen Assistenten, der meine OneDrive-Reports und eine Handvoll Websites kennt, mit eigener Anweisung – ohne IT.', a:'builder', w:'Mehrere Quellen + Web + eigene Anweisung, No-Code – Agent Builder (ein SharePoint Agent kann nur 1 Site und kein Web).' }
+    { a:'prompt', de:{ t:'Fasse diese eine wütende Kunden-Mail zusammen und entwirf eine höfliche Antwort.', w:'Einmalig, der ganze Kontext steht schon im Chat – ein normaler Copilot-Prompt reicht.' }, en:{ t:'Summarize this one angry customer email and draft a polite reply.', w:'A one-off task – the whole context is already in the chat, so a normal Copilot prompt is enough.' } },
+    { a:'sharepoint', alt:['builder'], de:{ t:'400 Verträge liegen in EINER SharePoint-Bibliothek. Das Team soll sie befragen können – kein Web, keine IT, in 10 Minuten startklar.', w:'Am schnellsten der SharePoint-Agent (direkt auf der Bibliothek, ohne Setup). Auch möglich: ein Agent Builder mit dieser Bibliothek als Wissensquelle – etwas mehr Aufwand, dafür eigene Anweisungen und Starter-Prompts.' }, en:{ t:'400 contracts sit in ONE SharePoint library. The team needs to be able to query them – no web, no IT, ready to go in 10 minutes.', w:'Fastest is the SharePoint Agent (right on the library, no setup). Also possible: an Agent Builder with this library as a knowledge source – a bit more effort, but with custom instructions and starter prompts.' } },
+    { a:'cowork', de:{ t:'Geh eigenständig meinen Posteingang der letzten Woche durch, fasse die wichtigsten Punkte zusammen, erstelle drei Antwort-Entwürfe UND leg mir ein Word-Dokument mit dem Wochenüberblick ab – alles in einem Rutsch.', w:'Mehrstufige Aufgabe über E-Mail + Dokumente, eigenständig in deinem Namen erledigt und fertig abgelegt – das ist Copilot Cowork (kein Bauen, mehr als ein einzelner Prompt).' }, en:{ t:'On your own, go through my inbox from the last week, summarize the key points, create three reply drafts AND save me a Word document with the weekly overview – all in one go.', w:'A multi-step task across email + documents, done independently on your behalf and saved as a finished result – that is Copilot Cowork (no building, more than a single prompt).' } },
+    { a:'studio', de:{ t:'Bei JEDER neuen Schadensmeldung soll automatisch ein Datensatz in Dynamics angelegt und eine Bestätigungsmail verschickt werden – ohne dass jemand klickt.', w:'Auslöser + Aktion im Fremdsystem + Autonomie für einen definierten Prozess – das baut man in Copilot Studio.' }, en:{ t:'For EVERY new claim report, a record should automatically be created in Dynamics and a confirmation email sent – without anyone clicking.', w:'A trigger + an action in a third-party system + autonomy for a defined process – you build that in Copilot Studio.' } },
+    { a:'foundry', de:{ t:'Ein Entwicklerteam trainiert ein eigenes, feingetuntes Modell auf 10 Mio. historischen Serviceprotokollen und orchestriert mehrere spezialisierte Agenten.', w:'Eigenes Modell, Fine-Tuning, Multi-Agent – Pro-Code-Terrain, nur in Microsoft Foundry.' }, en:{ t:'A developer team trains its own fine-tuned model on 10 million historical service logs and orchestrates several specialized agents.', w:'Custom model, fine-tuning, multi-agent – pro-code territory, only in Microsoft Foundry.' } },
+    { a:'researcher', alt:['cowork'], de:{ t:'Erstelle eine belastbare Wettbewerbsanalyse der drei größten europäischen Mobilitätsclubs – aus Web-Quellen UND unseren internen Unterlagen, sauber zitiert.', w:'Ideal der Researcher-Agent: tiefe, quellenzitierte Recherche über Web + Arbeitsinhalte. Auch möglich: Copilot Cowork, wenn daraus gleich ein fertiges Dokument end-to-end entstehen soll.' }, en:{ t:'Create a solid competitive analysis of the three largest European mobility clubs – from web sources AND our internal documents, properly cited.', w:'The Researcher agent is ideal: deep, source-cited research across the web + your work content. Also possible: Copilot Cowork, if it should turn straight into a finished document end-to-end.' } },
+    { a:'builder', de:{ t:'Ein Service-Assistent, der Tarif-PDFs aus drei SharePoint-Ordnern UND einer öffentlichen Website kennt, mit 4 Startfragen, ohne Code.', w:'Mehrere M365-Quellen + Web + Starter-Prompts, deklarativ ohne Code – klassischer Agent Builder.' }, en:{ t:'A service assistant that knows tariff PDFs from three SharePoint folders AND a public website, with 4 starter questions, no code.', w:'Several M365 sources + web + starter prompts, declarative and code-free – a classic Agent Builder.' } },
+    { a:'analyst', alt:['prompt'], de:{ t:'Analysiere diese Excel-Datei mit den Servicezahlen: Top-Ursachen, Vorjahresvergleich, Ausreißer – und liefere ein Balkendiagramm.', w:'Ideal der Analyst-Agent (rechnet mit Python im Hintergrund, auch bei komplexeren Auswertungen). Auch möglich: M365 Copilot direkt in Excel bzw. mit „Think Deeper" für einfachere Analysen.' }, en:{ t:'Analyze this Excel file with the service figures: top causes, year-over-year comparison, outliers – and deliver a bar chart.', w:'The Analyst agent is ideal (it crunches the numbers with Python in the background, even for more complex evaluations). Also possible: M365 Copilot directly in Excel, or with "Think Deeper" for simpler analyses.' } },
+    { a:'cowork', de:{ t:'Bereite meinen Kundentermin komplett vor: Kalender prüfen, relevante Dateien und Mails zusammentragen, ein Briefing als PDF erstellen und mir das fertige Ergebnis hinlegen.', w:'Langlaufende Aufgabe über mehrere Tools mit fertigem Deliverable – Copilot Cowork erledigt das end-to-end.' }, en:{ t:'Fully prepare my client meeting: check the calendar, gather the relevant files and emails, create a briefing as a PDF and hand me the finished result.', w:'A long-running task across several tools with a finished deliverable – Copilot Cowork handles this end-to-end.' } },
+    { a:'prompt', de:{ t:'Übersetze dieses eine Angebots-PDF einmalig ins Englische für einen Geschäftspartner.', w:'Einmalige Aufgabe, der Inhalt liegt vor – ein Prompt genügt.' }, en:{ t:'Translate this one quotation PDF into English, just this once, for a business partner.', w:'A one-off task and the content is already there – a single prompt will do.' } },
+    { a:'sharepoint', de:{ t:'Nur die Handbücher der SharePoint-Bibliothek „Serviceprozesse" sollen befragbar sein – nichts Externes, keine Automatisierung, gebaut vom Content-Owner.', w:'Eine SharePoint-Quelle, reines Q&amp;A, kein IT-Projekt – SharePoint Agent.' }, en:{ t:'Only the manuals in the SharePoint library "Service Processes" should be queryable – nothing external, no automation, built by the content owner.', w:'A single SharePoint source, pure Q&amp;A, no IT project – SharePoint Agent.' } },
+    { a:'studio', de:{ t:'Ein Bot auf unserer öffentlichen Website UND in WhatsApp, der Live-Daten aus dem CRM zieht und Termine bucht.', w:'Multi-Channel + Live-Connector + Buchungs-Aktion – Copilot Studio.' }, en:{ t:'A bot on our public website AND in WhatsApp that pulls live data from the CRM and books appointments.', w:'Multi-channel + live connector + a booking action – Copilot Studio.' } },
+    { a:'foundry', de:{ t:'Ein produktreifes KI-System mit eigenem Guardrail-Layer, A/B-Tests der Prompts, Tracing und Kostenkontrolle in der CI/CD-Pipeline, betrieben vom Data-Science-Team.', w:'Volle Entwicklerkontrolle, Evaluierung, Skalierung – Microsoft Foundry.' }, en:{ t:'A production-grade AI system with its own guardrail layer, A/B testing of prompts, tracing and cost control in the CI/CD pipeline, run by the data science team.', w:'Full developer control, evaluation, scaling – Microsoft Foundry.' } },
+    { a:'researcher', de:{ t:'Recherchiere die regulatorischen Änderungen zur E-Mobilität der letzten 6 Monate und liefere einen strukturierten Bericht mit verlinkten Quellen.', w:'Mehrstufige Recherche mit Quellen und fertigem Bericht – der Researcher-Agent (Standard-Chat wäre zu oberflächlich).' }, en:{ t:'Research the regulatory changes in e-mobility over the last 6 months and deliver a structured report with linked sources.', w:'Multi-step research with sources and a finished report – the Researcher agent (a standard chat would be too shallow).' } },
+    { a:'cowork', de:{ t:'Vergleiche eigenständig knapp 4.000 Dateien zwischen zwei Projektständen und liefere am Ende eine fertige Ergebnisliste – keinen Entwurf.', w:'Genau der Cowork-Fall: komplexe, lang laufende Aufgabe eigenständig bis zum fertigen Ergebnis (Microsofts eigenes Beispiel).' }, en:{ t:'On your own, compare nearly 4,000 files between two project versions and deliver a finished results list at the end – not a draft.', w:'Exactly the Cowork case: a complex, long-running task carried out independently through to a finished result (Microsoft\u2019s own example).' } },
+    { a:'builder', de:{ t:'Onboarding-Buddy für neue Mitarbeitende: greift auf das HR-Wiki (SharePoint) und die Firmen-Website zu, feste Startfragen, No-Code, vom Team selbst gebaut.', w:'M365 + Web, deklarativ, konsistente Team-Nutzung – Agent Builder.' }, en:{ t:'An onboarding buddy for new employees: it taps into the HR wiki (SharePoint) and the company website, fixed starter questions, no-code, built by the team itself.', w:'M365 + web, declarative, consistent use across the team – Agent Builder.' } },
+    { a:'analyst', de:{ t:'Berechne aus dieser CSV die Schadensquote je Tarif und Altersgruppe und erstelle eine Heatmap.', w:'Quantitative Analyse strukturierter Daten + Visualisierung – Analyst-Agent (führt dafür Python aus).' }, en:{ t:'From this CSV, calculate the claims rate per tariff and age group and create a heatmap.', w:'Quantitative analysis of structured data + a visualization – the Analyst agent (it runs Python for this).' } },
+    { a:'prompt', de:{ t:'Erkläre mir hier im Chat kurz den Unterschied zwischen AFIR und AFID.', w:'Kurze Wissensfrage, kein eigenes Firmenwissen nötig – normaler Copilot-Chat.' }, en:{ t:'Briefly explain the difference between AFIR and AFID here in the chat.', w:'A short knowledge question that needs no company-specific data – a normal Copilot chat.' } },
+    { a:'sharepoint', de:{ t:'Die Rechtsabteilung will ausschließlich über die Dateien EINER Projekt-Site Fragen beantworten lassen – schnell, ohne IT, ohne Web.', w:'Single-Site-Q&amp;A durch den Content-Owner – SharePoint Agent.' }, en:{ t:'The legal department wants questions answered solely from the files of ONE project site – fast, no IT, no web.', w:'Single-site Q&amp;A run by the content owner – SharePoint Agent.' } },
+    { a:'studio', de:{ t:'Ein autonomer Agent überwacht nachts den Sammel-Posteingang, kategorisiert Anfragen und erstellt Tickets in ServiceNow.', w:'Gebauter autonomer Prozess-Agent mit Auslöser + Fremdsystem-Aktion (ServiceNow) – Copilot Studio.' }, en:{ t:'An autonomous agent monitors the shared inbox overnight, categorizes requests and creates tickets in ServiceNow.', w:'A built, autonomous process agent with a trigger + a third-party system action (ServiceNow) – Copilot Studio.' } },
+    { a:'cowork', de:{ t:'Richte mir – ohne etwas zu bauen – eine tägliche Routine ein, die morgens meine Termine, neuen Mails und Teams-Nachrichten sichtet und mir ein kurzes Briefing erstellt.', w:'Geplanter, wiederkehrender Auftrag auf deinen eigenen M365-Daten, ohne Bauen – Copilot Cowork (kein Copilot-Studio-Projekt nötig).' }, en:{ t:'Without building anything, set up a daily routine for me that reviews my appointments, new emails and Teams messages each morning and puts together a short briefing.', w:'A scheduled, recurring job on your own M365 data, with no building involved – Copilot Cowork (no Copilot Studio project needed).' } },
+    { a:'foundry', de:{ t:'Ein maßgeschneidertes RAG-System mit Azure AI Search, eigenem Vektorindex und mehreren spezialisierten Agenten, eingebettet in unsere Azure-Landschaft.', w:'Eigene RAG-Architektur in Azure – Pro-Code, Microsoft Foundry.' }, en:{ t:'A tailor-made RAG system with Azure AI Search, its own vector index and several specialized agents, embedded in our Azure landscape.', w:'A custom RAG architecture in Azure – pro-code, Microsoft Foundry.' } },
+    { a:'builder', de:{ t:'Ein „E-Mobilität-Experte" mit fester Tonalität, gegroundet auf interne Doku + Web-Suche, den mehrere Kollegen konsistent nutzen – keine Anbindung an Fremdsysteme.', w:'Konsistente Team-Nutzung, M365 + Web, keine Aktionen – Agent Builder.' }, en:{ t:'An "e-mobility expert" with a fixed tone, grounded on internal documentation + web search, used consistently by several colleagues – no connection to third-party systems.', w:'Consistent use across the team, M365 + web, no actions – Agent Builder.' } },
+    { a:'researcher', alt:['cowork'], de:{ t:'Kombiniere Marktdaten aus dem Web mit unseren OneDrive-Dokumenten zu einer umfassenden Markteintritts-Analyse mit belegten Quellen.', w:'Ideal der Researcher-Agent (Web + interne Quellen, tiefe Analyse mit Zitaten). Auch möglich: Copilot Cowork, wenn die Analyse gleich als fertiges Deliverable abgelegt werden soll.' }, en:{ t:'Combine market data from the web with our OneDrive documents into a comprehensive market-entry analysis with cited sources.', w:'The Researcher agent is ideal (web + internal sources, deep analysis with citations). Also possible: Copilot Cowork, if the analysis should be saved straight away as a finished deliverable.' } },
+    { a:'analyst', de:{ t:'Rechne mir aus diesen Monatswerten Saisonalität, Ausreißer über 2 Standardabweichungen und eine Regressionsprognose aus.', w:'Statistik und Prognose auf einem Datensatz – der Analyst-Agent führt dafür Python aus.' }, en:{ t:'From these monthly values, calculate seasonality, outliers beyond 2 standard deviations and a regression forecast.', w:'Statistics and forecasting on a dataset – the Analyst agent runs Python for this.' } },
+    { a:'prompt', de:{ t:'Formuliere aus diesen drei Stichpunkten einen freundlichen Antworttext an einen Kunden.', w:'Kleine, einmalige Schreibaufgabe – ein Prompt reicht.' }, en:{ t:'Turn these three bullet points into a friendly reply to a customer.', w:'A small, one-off writing task – a single prompt is enough.' } },
+    { a:'cowork', de:{ t:'Erstelle mir eigenständig aus meinen Notizen und den Projektdateien eine fertige PowerPoint UND eine Excel-Übersicht und speichere beides ab – ich will das fertige Ergebnis.', w:'Mehrere Deliverables über mehrere Apps hinweg, eigenständig erstellt und gespeichert – Copilot Cowork statt einzelnem Prompt.' }, en:{ t:'On your own, create a finished PowerPoint AND an Excel overview from my notes and the project files, and save both – I want the finished result.', w:'Several deliverables across multiple apps, created and saved independently – Copilot Cowork rather than a single prompt.' } },
+    { a:'sharepoint', alt:['builder'], de:{ t:'Die Reisebüro-Kollegen sollen die 60 Länder-Infoblätter aus EINER SharePoint-Bibliothek befragen – nur diese Dateien, kein Web, ohne IT.', w:'Ideal der SharePoint-Agent (direkt auf der Bibliothek). Auch möglich: ein Agent Builder mit dieser Bibliothek als Quelle, wenn feste Startfragen/Tonalität gewünscht sind.' }, en:{ t:'The travel-agency colleagues should query the 60 country info sheets from ONE SharePoint library – only these files, no web, no IT.', w:'The SharePoint Agent is ideal (right on the library). Also possible: an Agent Builder with this library as its source, if fixed starter questions/tone are wanted.' } },
+    { a:'studio', de:{ t:'Ein Agent bindet über einen Power-Platform-Connector an SAP an und startet einen mehrstufigen Genehmigungs-Workflow – Low-Code von der Fachabteilung.', w:'Connector + Workflow/Aktion, Low-Code – Copilot Studio.' }, en:{ t:'An agent connects to SAP through a Power Platform connector and kicks off a multi-step approval workflow – low-code, built by the business unit.', w:'Connector + workflow/action, low-code – Copilot Studio.' } },
+    { a:'foundry', de:{ t:'Ein hochskalierendes Kundenprodukt mit Millionen Anfragen pro Tag braucht freie Modellwahl, eigenes Monitoring und Latenz-Tuning.', w:'Skalierung, Modellkontrolle, Betrieb – Microsoft Foundry.' }, en:{ t:'A highly scalable customer product with millions of requests per day needs free choice of model, its own monitoring and latency tuning.', w:'Scaling, model control, operations – Microsoft Foundry.' } },
+    { a:'builder', de:{ t:'Ich will schnell einen persönlichen Assistenten, der meine OneDrive-Reports und eine Handvoll Websites kennt, mit eigener Anweisung – ohne IT.', w:'Mehrere Quellen + Web + eigene Anweisung, No-Code – Agent Builder (ein SharePoint Agent kann nur 1 Site und kein Web).' }, en:{ t:'I want a quick personal assistant that knows my OneDrive reports and a handful of websites, with a custom instruction – no IT.', w:'Several sources + web + a custom instruction, no-code – Agent Builder (a SharePoint Agent can only cover 1 site and no web).' } }
   ];
 
   var state = Q.map(function () { return { stage1: null, choice: null, finished: false, correct: false }; });
@@ -474,9 +491,234 @@
   var overlay = document.getElementById('overlay');
   var ovScore = document.getElementById('ovScore');
   var ovMsg = document.getElementById('ovMsg');
+  var langSwitch = document.getElementById('langSwitch');
   document.getElementById('qTotal').textContent = Q.length;
 
-  function tag(cat) { return '<span class="tagchip"><img class="tagi" src="' + ICONS[cat] + '" alt="">' + CATS[cat].label + '</span>'; }
+  var LANG = 'de';
+
+  var UI = {
+    de: {
+      step1: 'Schritt 1 — Microsoft 365 Copilot oder eigener Agent?',
+      step2mode: 'Schritt 2 — welcher Modus in Microsoft 365 Copilot?',
+      step2build: 'Schritt 2 — welche Bau-Plattform?',
+      btnCopilot: 'M365 Copilot',
+      btnAgent: 'Eigener Agent',
+      verdictIdeal: '✓ Ideallösung',
+      verdictAlso: '✓ Auch möglich',
+      verdictWrong: '✗ Falsch',
+      labelIdeal: 'Ideallösung: ',
+      labelAlso: 'Auch möglich: ',
+      caseWord: 'Fall',
+      done: function (c, n) { return 'Fertig – ' + c + ' von ' + n + ' richtig.'; },
+      msg: ['Hervorragend – die Plattform-Grenzen sitzen perfekt!', 'Stark! Ein paar Feinheiten und du bist Profi.', 'Solide Grundlage – schau dir den Spickzettel unten an.', 'Guter Start – der Spickzettel unten bringt dich weiter.']
+    },
+    en: {
+      step1: 'Step 1 — Microsoft 365 Copilot or your own agent?',
+      step2mode: 'Step 2 — which mode in Microsoft 365 Copilot?',
+      step2build: 'Step 2 — which build platform?',
+      btnCopilot: 'M365 Copilot',
+      btnAgent: 'Your own agent',
+      verdictIdeal: '✓ Ideal solution',
+      verdictAlso: '✓ Also possible',
+      verdictWrong: '✗ Wrong',
+      labelIdeal: 'Ideal solution: ',
+      labelAlso: 'Also possible: ',
+      caseWord: 'Case',
+      done: function (c, n) { return 'Done – ' + c + ' of ' + n + ' correct.'; },
+      msg: ['Excellent – you have the platform boundaries down perfectly!', 'Strong work! A few nuances and you are a pro.', 'Solid foundation – take a look at the cheat sheet below.', 'Good start – the cheat sheet below will take you further.']
+    }
+  };
+
+  var T_EN = {
+    title: 'M365 Copilot Quiz: When do I use what? Copilot vs Agents',
+    kofiText: 'This quiz cost me $40 in Copilot credits 🥲',
+    kofiLink: 'Buy me a coffee',
+    heroTitle: 'M365 Copilot Quiz: When do I use what? Copilot vs Agents',
+    heroSub: 'Microsoft 365 Copilot · Cowork · Agent Builder · SharePoint Agent · Copilot Studio · Microsoft Foundry — 31 cases with a cheat sheet',
+    scoreLabel: 'Score',
+    answeredLabel: 'answered',
+    resetBtn: 'Restart',
+    intro: 'First decide: use it ready-made in <b>Microsoft 365 Copilot</b> (Prompt, Researcher, Analyst or Copilot Cowork) – or <b>build an agent yourself</b> (Agent Builder, SharePoint Agent, Copilot Studio, Microsoft Foundry)? The examples are deliberately extreme so that the boundaries of each platform become clear. The cheat sheet at the very bottom explains every option with an official source.',
+    prevBtn: '◀ Back',
+    nextBtn: 'Next ▶',
+    arrowHint: 'Use the ← → arrow keys to navigate.',
+    cheatH: 'Cheat sheet – the options in detail',
+    cheatSub: 'Features, limits and when to pick what – expand each point. Each one with an official Microsoft source.',
+    chPromptT: 'Simple prompt · Microsoft 365 Copilot Chat',
+    chPromptB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Instant answers in Word, Excel, Outlook, Teams and in Copilot Chat</li>
+          <li>Uses your work content via Microsoft Graph (only what you are allowed to see) plus the web</li>
+          <li>Summarize, draft, rephrase, Q&amp;A – fast, in seconds</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>One-off per conversation – nothing is saved as a reusable agent</li>
+          <li>No actions in third-party systems; for quick tasks, not for deep, multi-step analysis</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>A one-off task where the context is already in the chat</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/de-de/microsoft-365/copilot/microsoft-365-copilot-overview" target="_blank" rel="noopener">learn.microsoft.com – What is Microsoft 365 Copilot?</a></p>
+      `,
+    chResearcherT: 'Researcher agent (built into M365 Copilot)',
+    chResearcherB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Smart assistant for complex, multi-step research – simply pick it under "Agents"</li>
+          <li>Combines the web AND your work content (files, emails, meetings, chats) into a source-cited report</li>
+          <li>Choose the search scope (web only / work only / both); optional connectors to Salesforce, ServiceNow, Confluence</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>Deliberately takes more time (minutes instead of seconds)</li>
+          <li>For research &amp; synthesis – not for crunching raw data (→ Analyst); an M365 Copilot license is required</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>Market, competitor or regulatory analysis with cited sources</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/de-de/microsoft-365/copilot/researcher-agent" target="_blank" rel="noopener">learn.microsoft.com – Researcher agent in Microsoft 365 Copilot</a></p>
+      `,
+    chAnalystT: 'Analyst agent (built into M365 Copilot)',
+    chAnalystB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Virtual data analyst for structured data (Excel, CSV, TSV)</li>
+          <li>Generates and runs Python code in the background – fully transparent</li>
+          <li>Calculates trends, outliers and forecasts, creates visualizations, even across files</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>For quantitative data – not for web research (→ Researcher)</li>
+          <li>Quality depends on your data quality; an M365 Copilot license is required</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>Real calculations and charts from tables instead of "guessing from the text"</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/en-us/training/modules/analyze-visualize-data-copilot/" target="_blank" rel="noopener">learn.microsoft.com – Analyze and visualize data with the Analyst agent</a></p>
+      `,
+    chCoworkT: 'Copilot Cowork · the agentic AI colleague',
+    chCoworkB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Agentic "AI colleague" in Microsoft 365 Copilot (generally available) – gets tasks done on your behalf</li>
+          <li>Handles multi-step, long-running tasks independently across several tools and delivers a <b>finished result</b> instead of a draft</li>
+          <li>Can send emails, schedule meetings, create documents (Word, Excel, PowerPoint, PDF), post in Teams, manage your calendar, build daily briefings, search org-wide, run deep research; prompts can be scheduled (recurring)</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>Works within your M365 boundary with your permissions</li>
+          <li>A general personal assistant – not a replacement for a built process agent integrated into third-party systems (→ Copilot Studio); an M365 Copilot license is required</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>A task should be done end-to-end and a finished result sent/saved – without building anything</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-faq" target="_blank" rel="noopener">learn.microsoft.com – Copilot Cowork (frequently asked questions)</a></p>
+      `,
+    chBuilderT: 'Agent Builder · no-code in M365 Copilot',
+    chBuilderB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Declarative agents without code, right inside M365 Copilot (Teams, microsoft365.com/chat)</li>
+          <li>Custom instructions, tone and starter prompts; shareable across the organization</li>
+          <li>Knowledge sources: SharePoint files/folders/sites, up to 50 OneDrive files, up to 4 public websites, up to 5 Teams chat URLs, uploaded files, M365 Copilot connectors (if enabled by your admin)</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>No real actions in third-party systems, no triggers/autonomy</li>
+          <li>For simple, straightforward scenarios; limited number of sources</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>A recurring team assistant on M365 knowledge (+ a bit of web), no-code</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/agent-builder" target="_blank" rel="noopener">learn.microsoft.com – Agent Builder</a> · <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/agent-builder-add-knowledge" target="_blank" rel="noopener">Knowledge sources &amp; limits</a></p>
+      `,
+    chSpT: 'SharePoint Agent · Q&A on a site',
+    chSpB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Answers questions about the content of ONE SharePoint site or library</li>
+          <li>Every site has a ready-made agent; owners/members build their own in a few clicks (scope, identity, behavior, starter prompts) – without IT</li>
+          <li>Automatically inherits SharePoint permissions and sensitivity labels; shareable via link or in a Teams chat</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>SharePoint content only – no web, no external systems, no actions/automation</li>
+          <li>Tip from the docs: keep content small &amp; curated for good answers; an M365 Copilot license or pay-as-you-go is required</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>Document Q&amp;A over a specific site/library, set up quickly by the content owner</li></ul>
+        <p class="src">🔗 Source: <a href="https://support.microsoft.com/de-de/sharepoint/copilot-in-sharepoint/get-started-with-agents-in-sharepoint" target="_blank" rel="noopener">support.microsoft.com – Get started with agents in SharePoint</a></p>
+      `,
+    chStudioT: 'Copilot Studio · low-code, actions & autonomy',
+    chStudioB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Graphical low-code tool for agents and agent flows (copilotstudio.microsoft.com)</li>
+          <li>Topics + generative orchestration; prebuilt and custom connectors to many data sources</li>
+          <li>Actions &amp; automation, triggers and autonomous agents (react to events, run in the background)</li>
+          <li>Publish across many channels: website, Teams, Facebook, apps, Azure Bot Service</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>No custom model training / fine-tuning</li>
+          <li>Very complex, production-grade AI systems need pro-code (→ Foundry); plan for governance/environments</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>Process automation, third-party system integration, multi-channel bots, autonomy</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio" target="_blank" rel="noopener">learn.microsoft.com – Overview Microsoft Copilot Studio</a></p>
+      `,
+    chFoundryT: 'Microsoft Foundry · pro-code for developers',
+    chFoundryB: `
+        <p>✅ Features</p>
+        <ul>
+          <li>Managed developer platform to build, deploy and scale agents</li>
+          <li>Free choice of model from the Foundry catalog (e.g. GPT, Llama, DeepSeek); prompt agents (configured) and hosted agents (your own code as a container)</li>
+          <li>Tools: web/file search, code interpreter, memory, MCP servers; RAG with Azure AI Search; multi-agent orchestration</li>
+          <li>Observability/tracing, Entra identity, RBAC, content filters; SDKs for Python, C#, JavaScript, Java</li>
+        </ul>
+        <p>⛔ Limits</p>
+        <ul>
+          <li>Requires developer know-how, Azure and governance</li>
+          <li>Overkill for simple knowledge agents; cost and operational responsibility are on you</li>
+        </ul>
+        <p>🎯 When</p>
+        <ul><li>Custom models/fine-tuning, scaling to millions of requests, deep custom architecture</li></ul>
+        <p class="src">🔗 Source: <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/overview" target="_blank" rel="noopener">learn.microsoft.com – What is Microsoft Foundry Agent Service?</a></p>
+      `,
+    bfSub: 'Microsoft 365 Copilot training & coaching · Daniel Rohregger',
+    bfProducts: 'Products covered',
+    bfLegal: '© 2026 Copilot Coaching · Daniel Rohregger. Created in the Copilot Coaching brand style. All product names and logos are property of Microsoft Corporation.',
+    finishTitle: 'Done!',
+    ovReplay: 'Play again',
+    ovClose: 'Close'
+  };
+
+  var origHTML = {}, origText = {};
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+    origText[el.getAttribute('data-i18n')] = el.textContent;
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-html]'), function (el) {
+    origHTML[el.getAttribute('data-i18n-html')] = el.innerHTML;
+  });
+
+  function setLang(lang) {
+    LANG = (lang === 'en') ? 'en' : 'de';
+    document.documentElement.lang = LANG;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+      var key = el.getAttribute('data-i18n');
+      var val = (LANG === 'en' && T_EN[key] !== undefined) ? T_EN[key] : origText[key];
+      if (val !== undefined) el.textContent = val;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-html]'), function (el) {
+      var key = el.getAttribute('data-i18n-html');
+      var val = (LANG === 'en' && T_EN[key] !== undefined) ? T_EN[key] : origHTML[key];
+      if (val !== undefined) el.innerHTML = val;
+    });
+    document.title = (LANG === 'en' && T_EN.title) ? T_EN.title : origText.title;
+    Array.prototype.forEach.call(langSwitch.querySelectorAll('button'), function (b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === LANG);
+    });
+    try { localStorage.setItem('quizLang', LANG); } catch (e) {}
+  }
+
+  function tag(cat) { return '<span class="tagchip"><img class="tagi" src="' + ICONS[cat] + '" alt="">' + CATS[cat].label[LANG] + '</span>'; }
   function tallies() { var a = 0, c = 0; state.forEach(function (s) { if (s.finished) { a++; if (s.correct) c++; } }); return { a: a, c: c }; }
   function makeBtn(label, iconKey) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'qbtn';
@@ -487,10 +729,11 @@
 
   function msgFor(c) {
     var pct = c / Q.length;
-    if (pct >= 0.88) return 'Hervorragend – die Plattform-Grenzen sitzen perfekt!';
-    if (pct >= 0.6)  return 'Stark! Ein paar Feinheiten und du bist Profi.';
-    if (pct >= 0.35) return 'Solide Grundlage – schau dir den Spickzettel unten an.';
-    return 'Guter Start – der Spickzettel unten bringt dich weiter.';
+    var m = UI[LANG].msg;
+    if (pct >= 0.88) return m[0];
+    if (pct >= 0.6)  return m[1];
+    if (pct >= 0.35) return m[2];
+    return m[3];
   }
 
   function launchConfetti() {
@@ -522,7 +765,7 @@
     scoreNum.textContent = t.c;
     answeredNum.textContent = t.a;
     if (t.a === Q.length) {
-      doneBanner.textContent = 'Fertig – ' + t.c + ' von ' + Q.length + ' richtig.';
+      doneBanner.textContent = UI[LANG].done(t.c, Q.length);
       doneBanner.classList.add('show');
       if (!celebrated) { celebrated = true; showOverlay(t.c); }
     } else {
@@ -535,20 +778,20 @@
     var s = state[i], item = Q[i];
     var accept = [item.a].concat(item.alt || []);
     var acceptG = {}; accept.forEach(function (c) { acceptG[GROUP[c]] = true; });
-    caseNo.textContent = 'Fall ' + (i + 1) + ' / ' + Q.length;
+    caseNo.textContent = UI[LANG].caseWord + ' ' + (i + 1) + ' / ' + Q.length;
     progFill.style.width = ((i + 1) / Q.length * 100) + '%';
-    qText.textContent = item.t;
+    qText.textContent = item[LANG].t;
     stageArea.innerHTML = '';
 
     var l1 = document.createElement('div');
     l1.className = 'steplabel';
-    l1.textContent = 'Schritt 1 — Microsoft 365 Copilot oder eigener Agent?';
+    l1.textContent = UI[LANG].step1;
     stageArea.appendChild(l1);
     var opts1 = document.createElement('div');
     opts1.className = 'opts';
     stageArea.appendChild(opts1);
-    var promptBtn = makeBtn('M365 Copilot', 'prompt');
-    var agentBtn = makeBtn('Eigener Agent', 'builder');
+    var promptBtn = makeBtn(UI[LANG].btnCopilot, 'prompt');
+    var agentBtn = makeBtn(UI[LANG].btnAgent, 'builder');
     opts1.appendChild(promptBtn);
     opts1.appendChild(agentBtn);
 
@@ -566,13 +809,13 @@
       var order = (s.stage1 === 'prompt') ? PROMPT_ORDER : AGENT_ORDER;
       var l2 = document.createElement('div');
       l2.className = 'steplabel';
-      l2.textContent = (s.stage1 === 'prompt') ? 'Schritt 2 — welcher Modus in Microsoft 365 Copilot?' : 'Schritt 2 — welche Bau-Plattform?';
+      l2.textContent = (s.stage1 === 'prompt') ? UI[LANG].step2mode : UI[LANG].step2build;
       stageArea.appendChild(l2);
       opts2 = document.createElement('div');
       opts2.className = 'opts';
       stageArea.appendChild(opts2);
       order.forEach(function (cat) {
-        var b = makeBtn(CATS[cat].label, cat);
+        var b = makeBtn(CATS[cat].label[LANG], cat);
         b.dataset.cat = cat;
         if (s.finished) {
           var ok = accept.indexOf(cat) >= 0;
@@ -586,12 +829,12 @@
 
     if (s.finished) {
       var ideal = (s.choice === item.a);
-      var verdict = s.correct ? (ideal ? '✓ Ideallösung' : '✓ Auch möglich') : '✗ Falsch';
-      var line = 'Ideallösung: ' + tag(item.a);
-      if (item.alt && item.alt.length) line += ' &nbsp;·&nbsp; Auch möglich: ' + item.alt.map(tag).join(' ');
+      var verdict = s.correct ? (ideal ? UI[LANG].verdictIdeal : UI[LANG].verdictAlso) : UI[LANG].verdictWrong;
+      var line = UI[LANG].labelIdeal + tag(item.a);
+      if (item.alt && item.alt.length) line += ' &nbsp;·&nbsp; ' + UI[LANG].labelAlso + item.alt.map(tag).join(' ');
       var fb = document.createElement('div');
       fb.className = 'feedback ' + (s.correct ? 'ok' : 'no');
-      fb.innerHTML = '<span class="verdict">' + verdict + '</span>' + line + '<br>' + item.w;
+      fb.innerHTML = '<span class="verdict">' + verdict + '</span>' + line + '<br>' + item[LANG].w;
       stageArea.appendChild(fb);
       Array.prototype.forEach.call(stageArea.querySelectorAll('.qbtn'), function (b) { b.disabled = true; });
     } else if (showStage2) {
@@ -642,6 +885,18 @@
     else if (e.key === 'ArrowRight' && cur < Q.length - 1) render(cur + 1);
   });
 
+  Array.prototype.forEach.call(langSwitch.querySelectorAll('button'), function (b) {
+    b.addEventListener('click', function () {
+      var l = b.getAttribute('data-lang');
+      if (l === LANG) return;
+      setLang(l);
+      render(cur);
+    });
+  });
+
+  var storedLang;
+  try { storedLang = localStorage.getItem('quizLang'); } catch (e) {}
+  setLang(storedLang === 'en' ? 'en' : 'de');
   render(0);
 })();
 </script>
